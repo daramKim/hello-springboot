@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
@@ -25,9 +26,17 @@ import hello.hellospring.repository.MemoryMemberRepository;
 
 class MemberServiceTest {
 
-	MemberService memberService = new MemberService();
-	MemoryMemberRepository repo = new MemoryMemberRepository();
+	MemoryMemberRepository repo;
+	MemberService memberService; 
 	
+	
+	// 생성된 서비스 객체에 연결되는 레포지토리가 항상 같도록 만들어줌.. 
+	// MemberService 입장에서는 외부에서 객체가 주입된것인데, 이것을 'DI' 디펜던시 인젝션이라고 한다.
+	@BeforeEach
+	public void beforeEach() {
+		repo = new MemoryMemberRepository();
+		memberService = new MemberService(repo);
+	}
 	
 	@AfterEach
 	public void afterEach() {
