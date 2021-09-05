@@ -9,12 +9,16 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import org.springframework.stereotype.Repository;
+
 import hello.hellospring.domain.Member;
 
 /**
  * Long과 HashMap은 동시성 문제가 고려되어 있지 않다고 함.
  * 실무에서는 ConcurrentHashMap, AtomicLong을 사용한다 함.
  */
+
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 	private static Map<Long, Member> store = new HashMap<>(); // 임시 DB {메모리} 
 	private static long seq = 0L;

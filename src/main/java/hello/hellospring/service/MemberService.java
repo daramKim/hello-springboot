@@ -3,6 +3,9 @@ package hello.hellospring.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
@@ -13,10 +16,18 @@ import hello.hellospring.repository.MemoryMemberRepository;
  * 서비스에 있는 로직들의 네이밍 컨벤션은 좀더 비즈니스에 가까워야 한다. 그래야 추후에 
  * 기획자든 누가 묻든 찾기가 쉬워진다고 함. 언어적으로 비즈니스에 매칭이 되기 때문
  */
+
+@Service
 public class MemberService {
 	
-	private final MemberRepository repo = new MemoryMemberRepository();
+	private final MemberRepository repo;
 	
+	// 스프링 4.3 이상부터는 생성자가 하나인 경우 AutWired를 쓰지 않아도 된다고 함. 
+	// https://devlog-wjdrbs96.tistory.com/166
+	@Autowired 
+	public MemberService(MemoryMemberRepository repo) {
+		this.repo = repo;
+	}
 	
 	/**
 	 * 회원가입
