@@ -18,7 +18,6 @@ import hello.hellospring.domain.Member;
  * 실무에서는 ConcurrentHashMap, AtomicLong을 사용한다 함.
  */
 
-@Repository
 public class MemoryMemberRepository implements MemberRepository {
 	private static Map<Long, Member> store = new HashMap<>(); // 임시 DB {메모리} 
 	private static long seq = 0L;

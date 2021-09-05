@@ -17,7 +17,6 @@ import hello.hellospring.repository.MemoryMemberRepository;
  * 기획자든 누가 묻든 찾기가 쉬워진다고 함. 언어적으로 비즈니스에 매칭이 되기 때문
  */
 
-@Service
 public class MemberService {
 	
 	private final MemberRepository repo;
@@ -25,7 +24,7 @@ public class MemberService {
 	// 스프링 4.3 이상부터는 생성자가 하나인 경우 AutWired를 쓰지 않아도 된다고 함. 
 	// https://devlog-wjdrbs96.tistory.com/166
 	@Autowired 
-	public MemberService(MemoryMemberRepository repo) {
+	public MemberService(MemberRepository repo) {
 		this.repo = repo;
 	}
 	
