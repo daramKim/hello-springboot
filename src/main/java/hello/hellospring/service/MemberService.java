@@ -42,7 +42,17 @@ public class MemberService {
 	public List<Member> findAllMembers(){
 		return repo.findAll();
 	}
-
+	
+	
+	public Optional<Member> findOne(Long memberId) {
+		return repo.findById(memberId);
+	}
+	
+	
+	
+	
+	
+	// 이 클래스 내부에서만 사용하는 유틸성 이면 private로 지정하고 보기좋게 좀 띄워놓자. 
 	private void validationDupName(Optional<Member> result) {
 		result.ifPresent(item -> { // 해당 이름으로 된 아이디를 검색해서 1개라도 있으면 Excepiton 발생 
 			throw new IllegalStateException("이미 존재하는 회원입니다.");
